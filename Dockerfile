@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ADD taiga-back /taiga-back
 ADD taiga-front-dist /taiga-front-dist
 
-COPY assets/config/docker-settings.py /taiga/settings/local.py
+COPY assets/config/docker-settings.py /taiga-back/settings/local.py
 COPY assets/config/locale.gen /etc/locale.gen
 
 RUN echo "LANG=en_US.UTF-8" > /etc/default/locale

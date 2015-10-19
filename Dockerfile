@@ -8,6 +8,7 @@ ADD taiga-front-dist /taiga-front-dist
 
 COPY assets/config/docker-settings.py /taiga-back/settings/local.py
 COPY assets/config/locale.gen /etc/locale.gen
+COPY assets/config/conf.json /taiga-front-dist/dist/js/conf.json
 
 RUN echo "LANG=en_US.UTF-8" > /etc/default/locale
 RUN echo "LC_TYPE=en_US.UTF-8" > /etc/default/locale

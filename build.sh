@@ -27,7 +27,7 @@ fi
 
 cp taiga-back/requirements.txt .
 
-$SUDO docker build -t ipedrazas/taiga .
+$SUDO docker build -t queeno/taiga .
 
 rm requirements.txt
 

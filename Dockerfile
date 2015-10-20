@@ -1,5 +1,5 @@
 FROM python:3.4.3-onbuild
-MAINTAINER Ivan Pedrazas "ipedrazas@gmail.com"
+MAINTAINER Simon Aquino "simonaquino@gmail.com"
 
 ENV DEBIAN_FRONTEND noninteractive
 

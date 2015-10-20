@@ -1,14 +1,8 @@
 #! /usr/bin/env bash
 
-POSTGRES_DIR='/data/postgres'
-
-if [[ $OSTYPE != darwin* ]]; then
-  SUDO=sudo
-fi
-
-if [[ -z "$API_NAME" ]]; then
-    API_NAME="localhost";
-fi
+[[ -z "${POSTGRES_DIR}" ]] && POSTGRES_DIR='/data/postgres'
+[[ -z "${API_NAME}" ]] && API_NAME="localhost"
+[[ $OSTYPE != darwin* ]] && SUDO=sudo
 
 [[ -d ${POSTGRES_DIR} ]] && sudo mkdir -p ${POSTGRES_DIR}
 

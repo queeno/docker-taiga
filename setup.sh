@@ -1,5 +1,7 @@
 #! /usr/bin/env bash
 
+POSTGRES_DIR='/data/postgres'
+
 if [[ $OSTYPE != darwin* ]]; then
   SUDO=sudo
 fi
@@ -8,25 +10,23 @@ if [[ -z "$API_NAME" ]]; then
     API_NAME="localhost";
 fi
 
-sudo mkdir -p /data/postgres
+[[ -d ${POSTGRES_DIR} ]] && sudo mkdir -p ${POSTGRES_DIR}
 
-$SUDO docker pull ipedrazas/taiga-back
-$SUDO docker pull ipedrazas/taiga-front
+$SUDO docker pull queeno/taiga
 
+# Run Postgres
+$SUDO docker run -d --name postgres -v ${POSTGRES_DIR}:/var/lib/postgresql/data postgres
 
-$SUDO docker run -d --name postgres  -v /data/postgres:/var/lib/postgresql/data postgres
-# postgres needs some time to startup
+# Postgres needs some time to startup
 sleep 5
-$SUDO docker run -d --name taiga-back  -p 8000:8000 -e API_NAME=$API_NAME  --link postgres:postgres ipedrazas/taiga-back
-$SUDO docker run -d --name taiga-front -p 80:80 -e API_NAME=$API_NAME --link taiga-back:taiga-back --volumes-from taiga-back ipedrazas/taiga-front
 
-$SUDO docker run -it --link postgres:postgres --rm postgres sh -c "su postgres --command 'createuser -h "'$POSTGRES_PORT_5432_TCP_ADDR'" -p "'$POSTGRES_PORT_5432_TCP_PORT'" -d -r -s taiga'"
-$SUDO docker run -it --link postgres:postgres --rm postgres sh -c "su postgres --command 'createdb -h "'$POSTGRES_PORT_5432_TCP_ADDR'" -p "'$POSTGRES_PORT_5432_TCP_PORT'" -O taiga taiga'";
-$SUDO docker run -it --rm --link postgres:postgres ipedrazas/taiga-back bash regenerate.sh
+# Initialise the database
+docker exec postgres sh -c "su postgres --command 'createuser -d -r -s taiga'"
+docker exec postgres sh -c "su postgres --command 'createdb -O taiga taiga'"
 
+# Run taiga
+docker run -d -p 8000:8000 --env API_NAME="${API_NAME}" --name taiga --link postgres:postgres queeno/taiga
+docker exec taiga bash -c "sed -i 's/API_NAME/${API_NAME}/g' /taiga-front-dist/dist/js/conf.json"
 
-
-
-
-
-
+# Populate the database
+docker exec taiga bash regenerate.sh

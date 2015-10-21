@@ -25,7 +25,7 @@ COPY assets/config/locale.gen /etc/locale.gen
 COPY assets/config/conf.json /taiga-front-dist/dist/js/conf.json
 
 RUN locale-gen en_US.UTF-8 \
-    && pkg-reconfigure locales \
+    && dpkg-reconfigure locales \
     && locale -a
 
 RUN pip install -r /taiga-back/requirements.txt

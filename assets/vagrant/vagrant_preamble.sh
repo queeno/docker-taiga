@@ -22,7 +22,7 @@ apt-get install -y \
 
 # Build the taiga docker container
 cd /vagrant
-./build.sh
+docker build -t queeno/taiga .
 
 # Run the postgres container
 docker run -d --name postgres postgres

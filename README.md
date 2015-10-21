@@ -2,7 +2,7 @@
 
 Dockerfile to automate your [Taiga](https://Taiga.io/) deployment.
 
-This project has been initially forked from [ipedrazas/taiga-docker](https://github.com/ipedrazas/taiga-docker)
+This project was initially forked from [ipedrazas/taiga-docker](https://github.com/ipedrazas/taiga-docker)
 
 ## Why queeno/docker-taiga
 

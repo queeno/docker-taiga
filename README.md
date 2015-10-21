@@ -43,7 +43,7 @@ If you want to manually deploy your docker container or to build your own image,
 - Pull the latest image from Docker Hub
   
   ```bash
-  docker pull queeno/taiga
+  docker pull queeno/docker-taiga
   ```
 
 - or build your own image locally:
@@ -51,7 +51,7 @@ If you want to manually deploy your docker container or to build your own image,
   ```bash
   git clone https://github.com/queeno/docker-taiga.git
   cd docker-taiga
-  docker build -t queeno/taiga .
+  docker build -t queeno/docker-taiga .
   ```
 
 ### Run taiga
@@ -72,7 +72,7 @@ If you want to manually deploy your docker container or to build your own image,
 - Run taiga:
   
   ```bash
-  docker run -d -p 8000:8000 --env API_NAME="${API_NAME}" --name taiga --link postgres:postgres queeno/taiga
+  docker run -d -p 8000:8000 --env API_NAME="${API_NAME}" --name taiga --link postgres:postgres queeno/docker-taiga
   docker exec taiga bash -c "sed -i 's/API_NAME/${API_NAME}/g' /taiga-front-dist/dist/js/conf.json"
   ```
 

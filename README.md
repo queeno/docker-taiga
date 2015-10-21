@@ -16,7 +16,11 @@ assets/nginx/taiga.conf contains a sample configuration for the nginx container.
 
 ## One step deployment
 
-The setup.sh script will deploy and run the postgres and taiga containers in one go.
+```bash
+assets/scripts/setup.sh
+```
+
+will deploy and run the postgres and taiga containers in one go.
 
 - Script parameters:
 
@@ -25,7 +29,7 @@ The setup.sh script will deploy and run the postgres and taiga containers in one
 
   You can pass values via environment variables. If you do not, the following defaults will apply:
 
-  ```
+  ```bash
   POSTGRES_DIR='/data/postgres'
   API_NAME='localhost' 
   ```

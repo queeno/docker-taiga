@@ -18,7 +18,9 @@ RUN git clone -b stable --single-branch https://github.com/taigaio/taiga-back.gi
 RUN git clone -b stable --single-branch https://github.com/taigaio/taiga-front-dist /taiga-front-dist
 
 RUN sed -i 's/^enum34/#enum34/' /taiga-back/requirements.txt \
-    && sed -i -e '/sample_data/s/^/#/' /taiga-back/regenerate.sh
+    && sed -i -e '/sample_data/s/^/#/' /taiga-back/regenerate.sh \
+    && sed -i -e '/dropdb/s/^/#/' /taiga-back/regenerate.sh \
+    && sed -i -e '/createdb/s/^/#/' /taiga-back/regenerate.sh
 
 COPY assets/config/docker-settings.py /taiga-back/settings/local.py
 COPY assets/config/locale.gen /etc/locale.gen

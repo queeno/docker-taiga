@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 [[ -z "${POSTGRES_DIR}" ]] && POSTGRES_DIR='/data/postgres'
-[[ -z "${API_NAME}" ]] && API_NAME="localhost"
+[[ -z "${API_NAME}" ]] && API_NAME="localhost:8000"
 [[ -z "${API_SCHEMA}" ]] && API_SCHEMA="http"
 [[ $OSTYPE != darwin* ]] && SUDO=sudo
 

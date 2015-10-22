@@ -25,14 +25,14 @@ will deploy and run the postgres and taiga containers in one go.
 - Script parameters:
 
   `POSTGRES_DIR` indicates the host location where the postgres files will reside.
-  `API_NAME` indicates the taiga API server name or IP address (usually listening on port 8000)
+  `API_NAME` indicates the taiga API server name or IP address. This also generally includes the relative TCP port.
   `API_SCHEMA` indicates whether the API requests will be made via HTTP or HTTPS
 
   You can pass values via environment variables. If you do not, the following defaults will apply:
 
   ```bash
   POSTGRES_DIR='/data/postgres'
-  API_NAME='localhost'
+  API_NAME='localhost:8000'
   API_SCHEMA='http'
   ```
 

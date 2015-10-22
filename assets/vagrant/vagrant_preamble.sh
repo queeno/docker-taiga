@@ -4,7 +4,7 @@
 DOCKER_VERSION='1.8.2-0~trusty'
 
 # API Name should resolve to the Taiga API server
-API_NAME="$(facter ipaddress_eth1)"
+API_NAME="$(facter ipaddress_eth1):8000"
 API_SCHEMA='http'
 
 # Install GPG key

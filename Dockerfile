@@ -4,7 +4,7 @@ MAINTAINER Simon Aquino "simonaquino@gmail.com"
 ENV DEBIAN_FRONTEND noninteractive
 ENV LANG en_US.UTF-8
 ENV LC_TYPE en_US.UTF-8
-ENV API_NAME localhost
+ENV API_NAME localhost:8000
 ENV API_SCHEMA http
 
 RUN echo "LANG=en_US.UTF-8" > /etc/default/locale \

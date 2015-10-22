@@ -1,5 +1,5 @@
 {
-    "api": "API_SCHEMA://API_NAME:8000/api/v1/",
+    "api": "API_SCHEMA://API_NAME/api/v1/",
     "eventsUrl": null,
     "debug": true,
     "debugInfo": false,

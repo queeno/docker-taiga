@@ -26,12 +26,14 @@ will deploy and run the postgres and taiga containers in one go.
 
   `POSTGRES_DIR` indicates the host location where the postgres files will reside.
   `API_NAME` indicates the taiga API server name or IP address (usually listening on port 8000)
+  `API_SCHEMA` indicates whether the API requests will be made via HTTP or HTTPS
 
   You can pass values via environment variables. If you do not, the following defaults will apply:
 
   ```bash
   POSTGRES_DIR='/data/postgres'
-  API_NAME='localhost' 
+  API_NAME='localhost'
+  API_SCHEMA='http'
   ```
 
 ## Manual deployment
@@ -74,6 +76,7 @@ If you want to manually deploy your docker container or to build your own image,
   ```bash
   docker run -d -p 8000:8000 --env API_NAME="${API_NAME}" --name taiga --link postgres:postgres queeno/docker-taiga
   docker exec taiga bash -c "sed -i 's/API_NAME/${API_NAME}/g' /taiga-front-dist/dist/js/conf.json"
+  docker exec taiga bash -c "sed -i 's/API_SCHEMA/${API_SCHEMA}/g' /taiga-front-dist/dist/js/conf.json"
   ```
 
 - Initalise the database:

@@ -12,7 +12,7 @@ $SUDO docker pull queeno/docker-taiga
 $SUDO docker run -d --name postgres -v ${POSTGRES_DIR}:/var/lib/postgresql/data postgres
 
 # Postgres needs some time to startup
-sleep 5
+sleep 10
 
 # Initialise the database
 $SUDO docker exec postgres sh -c "su postgres --command 'createuser -d -r -s taiga'"

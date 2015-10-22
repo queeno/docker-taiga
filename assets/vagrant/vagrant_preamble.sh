@@ -5,6 +5,7 @@ DOCKER_VERSION='1.8.2-0~trusty'
 
 # API Name should resolve to the Taiga API server
 API_NAME="$(facter ipaddress_eth1)"
+API_SCHEMA='http'
 
 # Install GPG key
 apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
@@ -37,6 +38,7 @@ docker exec postgres sh -c "su postgres --command 'createdb -O taiga taiga'"
 # Run taiga
 docker run -d -p 8000:8000 --env API_NAME="${API_NAME}" --name taiga --link postgres:postgres queeno/taiga
 docker exec taiga bash -c "sed -i 's/API_NAME/${API_NAME}/g' /taiga-front-dist/dist/js/conf.json"
+docker exec taiga bash -c "sed -i 's/API_SCHEMA/${API_SCHEMA}/g' /taiga-front-dist/dist/js/conf.json"
 
 # Populate the database
 docker exec taiga bash regenerate.sh

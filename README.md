@@ -98,28 +98,27 @@ docker run --volumes-from taiga --link taiga --name nginx -v "$(pwd)"/assets/ngi
 #### HTTPS
 
 1. Generate a keypair on the host
-```bash
-openssl genrsa -out /tmp/taiga.pem 2048
-```
-
+ ```bash
+ openssl genrsa -out /tmp/taiga.pem 2048
+ ```
+ 
 1. Generate a CSR
-```bash
-openssl req -new -key /tmp/taiga.pem -out /tmp/taiga.csr
-```
-
+ ```bash
+ openssl req -new -key /tmp/taiga.pem -out /tmp/taiga.csr
+ ```
+ 
 1. Send the csr to your CA for signing or self sign it:
-```bash
-openssl x509 -req -days 365 -in /tmp/taiga.csr -signkey /tmp/taiga.pem -out /tmp/taiga.crt
-```
-
+ ```bash
+ openssl x509 -req -days 365 -in /tmp/taiga.csr -signkey /tmp/taiga.pem -out /tmp/taiga.crt
+ ```
+ 
 1. Store the keypair in your host's keychain - for example on CentOS:
-```bash
-mv /tmp/taiga.pem /etc/pki/tls/private/
-mv /tmp/taiga.crt /etc/pki/tls/certs/
-```
-
+ ```bash
+ mv /tmp/taiga.pem /etc/pki/tls/private/
+ mv /tmp/taiga.crt /etc/pki/tls/certs/
+ ```
+ 
 1. Run the nginx container:
-
-```bash
-docker run --volumes-from taiga --link taiga --name nginx -v /etc/pki/tls/certs/taiga.crt:/etc/ssl/cert.pem:ro -v /etc/pki/tls/private/taiga.key:/etc/ssl/cert.key:ro -v /opt/nginx/taiga_ssl.conf:/etc/nginx/conf.d/default.conf:ro -p 443:443 -d nginx
-```
+ ```bash
+ docker run --volumes-from taiga --link taiga --name nginx -v /etc/pki/tls/certs/taiga.crt:/etc/ssl/cert.pem:ro -v /etc/pki/tls/private/taiga.key:/etc/ssl/cert.key:ro -v /opt/nginx/taiga_ssl.conf:/etc/nginx/conf.d/default.conf:ro -p 443:443 -d nginx
+ ```

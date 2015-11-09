@@ -7,7 +7,7 @@ ENV LC_TYPE en_US.UTF-8
 ENV API_NAME localhost:8000
 ENV API_SCHEMA http
 
-COPY assets/config/TAIGA_VERSION /TAIGA_VERSION
+COPY TAIGA_VERSION /TAIGA_VERSION
 
 RUN echo "LANG=en_US.UTF-8" > /etc/default/locale \
     && echo "LC_TYPE=en_US.UTF-8" > /etc/default/locale \

@@ -7,6 +7,8 @@ ENV LC_TYPE en_US.UTF-8
 ENV API_NAME localhost:8000
 ENV API_SCHEMA http
 
+COPY assets/config/TAIGA_VERSION /TAIGA_VERSION
+
 RUN echo "LANG=en_US.UTF-8" > /etc/default/locale \
     && echo "LC_TYPE=en_US.UTF-8" > /etc/default/locale \
     && echo "LC_MESSAGES=POSIX" >> /etc/default/locale \
@@ -15,8 +17,8 @@ RUN echo "LANG=en_US.UTF-8" > /etc/default/locale \
 RUN apt-get update \
     && apt-get install -y git locales
 
-RUN git clone -b stable --single-branch https://github.com/taigaio/taiga-back.git /taiga-back
-RUN git clone -b stable --single-branch https://github.com/taigaio/taiga-front-dist /taiga-front-dist
+RUN git clone -b $(cat /TAIGA_VERSION) --single-branch https://github.com/taigaio/taiga-back.git /taiga-back
+RUN git clone -b $(cat /TAIGA_VERSION) --single-branch https://github.com/taigaio/taiga-front-dist /taiga-front-dist
 
 RUN sed -i 's/^enum34/#enum34/' /taiga-back/requirements.txt \
     && sed -i -e '/sample_data/s/^/#/' /taiga-back/regenerate.sh \

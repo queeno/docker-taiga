@@ -1,4 +1,4 @@
-FROM python:3.4
+FROM python:3.5
 MAINTAINER Simon Aquino "simonaquino@gmail.com"
 
 ENV DEBIAN_FRONTEND noninteractive

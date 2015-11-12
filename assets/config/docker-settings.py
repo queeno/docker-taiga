@@ -110,6 +110,8 @@ LOGGING = {
 MEDIA_URL = "http://" + os.getenv("API_NAME") + "/media/"
 STATIC_URL = "http://" + os.getenv("API_NAME") + "/static/"
 
+#PUBLIC_REGISTER_ENABLED = True
+
 #MEDIA_ROOT = '/home/taiga/media'
 #STATIC_ROOT = '/home/taiga/static'
 
